@@ -34,8 +34,10 @@ public class TankFrame extends Frame {
         tanks = new ArrayList<>();
         explodes = new ArrayList<>();
 
-        for(int i=0; i<10; i++) {
-            tanks.add(new Tank(100 + 50 * i, 200, Dir.D, Group.BAD ));
+        int tankCount = Integer.parseInt(PropertyMgr.get("initTankCount"));
+
+        for (int i = 0; i < tankCount; i++) {
+            tanks.add(new Tank(100 + 50 * i, 200, Dir.D, Group.BAD));
         }
     }
 
@@ -53,8 +55,8 @@ public class TankFrame extends Frame {
         g.setColor(c);
 
         myTank.paint(g);
-        for(int i=0; i<tanks.size(); i++) {
-            if(!tanks.get(i).isLive()) {
+        for (int i = 0; i < tanks.size(); i++) {
+            if (!tanks.get(i).isLive()) {
                 tanks.remove(i);
             } else {
                 tanks.get(i).paint(g);
@@ -62,7 +64,7 @@ public class TankFrame extends Frame {
         }
 
         for (int i = 0; i < bullets.size(); i++) {
-            for(int j=0; j<tanks.size(); j++) {
+            for (int j = 0; j < tanks.size(); j++) {
                 bullets.get(i).collidesWithTank(tanks.get(j));
             }
 
@@ -72,8 +74,8 @@ public class TankFrame extends Frame {
                 bullets.get(i).paint(g);
             }
         }
-        for(int i=0; i<explodes.size(); i++) {
-            if(!explodes.get(i).isLive()) {
+        for (int i = 0; i < explodes.size(); i++) {
+            if (!explodes.get(i).isLive()) {
                 explodes.remove(i);
             } else {
                 explodes.get(i).paint(g);
